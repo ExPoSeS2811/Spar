@@ -19,10 +19,10 @@ enum TabItem: String, CaseIterable {
     
     var text: Text {
         switch self {
-        case .main: return Text("Главная")
-        case .catalog: return Text("Каталог")
-        case .cart: return Text("Корзина")
-        case .profile: return Text("Профиль")
+        case .main: return Text(Labels.TabItem.main)
+        case .catalog: return Text(Labels.TabItem.catalog)
+        case .cart: return Text(Labels.TabItem.cart)
+        case .profile: return Text(Labels.TabItem.profile)
         }
     }
     

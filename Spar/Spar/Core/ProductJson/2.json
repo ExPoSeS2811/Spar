@@ -2,9 +2,10 @@
   "name": "Добавка \"Липа\" к чаю 200 г",
   "rating": 4.1,
   "discount": "-5%",
+  "hint": "card_price",
   "origin": {
       "name": "Испания, Риоха",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png"
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png"
   },
   "description": "Флавоноиды липового цвета обладают противовоспалительным действием, способствуют укреплению стенки сосудов.",
   "characteristics": {

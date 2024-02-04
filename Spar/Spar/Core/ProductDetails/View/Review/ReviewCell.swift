@@ -13,14 +13,9 @@ struct ReviewCell: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: Component.module) {
-                Text(review.author)
-                    .font(.headline)
-                Text(review.date)
-                    .font(.headline)
-                    .foregroundColor(.gray)
+                headerSection
                 StarView(filledStars: review.rating)
-                Text(review.text)
-                    .lineLimit(2)
+                contentSection
                 Spacer()
             }
             Spacer()
@@ -31,6 +26,24 @@ struct ReviewCell: View {
         .clipShape(RoundedRectangle(cornerRadius: Component.tripleModule))
         .shadow(color: Color.black.opacity(0.2), radius: 7)
         .frame(width: 290, height: 180)
-        .padding([.leading, .top])
+        .padding(.leading)
+    }
+}
+
+private extension ReviewCell {
+    var headerSection: some View {
+        VStack(alignment: .leading, spacing: Component.module) {
+            Text(review.author)
+                .font(.headline)
+            Text(review.date)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+    }
+    
+    var contentSection: some View {
+        Text(review.text)
+            .lineLimit(2)
+            .font(.body)
     }
 }

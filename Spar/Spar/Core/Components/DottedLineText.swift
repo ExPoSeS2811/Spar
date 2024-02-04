@@ -13,17 +13,18 @@ struct DottedLineText: View {
     var value: String
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Text(title)
-            Spacer()
+                .padding(.trailing, Component.halfModule)
             DottedLine()
                 .stroke(Color.gray, lineWidth: 1)
                 .frame(height: 1)
                 .offset(y: 4)
-            
             Text(value)
+                .padding(.leading, Component.halfModule)
                 .multilineTextAlignment(.trailing)
         }
+        .font(.system(size: 12))
     }
 }
 
@@ -39,8 +40,8 @@ struct DottedLineText: View {
 struct DottedLine: Shape {
     func path(in rect: CGRect) -> Path {
         Path { path in
-            let circleRadius: CGFloat = 1
-            let circlesSpacing: CGFloat = 5
+            let circleRadius: CGFloat = 0.4
+            let circlesSpacing: CGFloat = 4
             var xPosition: CGFloat = circleRadius
             
             while xPosition < rect.width {

@@ -12,7 +12,8 @@ struct Images {
         static let backArrow = Image(systemName: "arrow.left")
         static let bill = Image(systemName: "list.bullet.clipboard")
         static let share = Image(systemName: "square.and.arrow.up")
-        static let favorite = Image(systemName: "heart")
+        static let favoriteOutline = Image(systemName: "heart")
+        static let favoriteFill = Image(systemName: "heart.fill")
         static let plus = Image(systemName: "plus")
         static let minus = Image(systemName: "minus")
     }

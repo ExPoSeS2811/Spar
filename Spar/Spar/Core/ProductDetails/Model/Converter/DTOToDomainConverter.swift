@@ -17,10 +17,12 @@ struct ProductDTOToDomainConverter {
               let imageUrl = dto?.imageUrl,
               let priceKg = dto?.priceKg,
               let priceUnit = dto?.priceUnit else { return nil }
+        
         return Product(
             name: name,
             rating: rating,
             discount: dto?.discount,
+            hint: convert(from: dto?.hint),
             origin: convert(from: origin),
             description: description,
             characteristics: characteristics,
@@ -56,5 +58,17 @@ struct ProductDTOToDomainConverter {
         formatter.locale = russianLocale
         formatter.dateFormat = "d MMMM yyyy"
         return formatter.string(from: date)
+    }
+    
+    private func convert(from value: ProductResult.TagTypeResult?) -> Product.TagType? {
+        guard let value = value else { return nil }
+        
+        switch value {
+        case .new: return .new
+        case .priceHit: return .priceHit
+        case .superPrice: return .superPrice
+        case .cardPrice: return .cardPrice
+        case .cheaperOnline: return .cheaperOnline
+        }
     }
 }
