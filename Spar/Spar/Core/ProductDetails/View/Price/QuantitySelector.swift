@@ -35,7 +35,7 @@ struct QuantitySelector: View {
         .padding(.vertical, Component.module)
         .padding(.horizontal, Component.doubleModule)
         .background(DesignColor.toxic)
-        .clipShape(.capsule)
+        .clipShape(Capsule())
     }
     
     private func createButton(for quantityAction: QuantityAction) -> some View {

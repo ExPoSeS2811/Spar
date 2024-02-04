@@ -51,7 +51,7 @@ struct CharacteristicsProductSectionView: View {
             
             if product.characteristics.count > 5 {
                 Button(showAllCharacteristics ? "Свернуть" : "Все характеристики") {
-                    withAnimation(.bouncy) {
+                    withAnimation(Animation.bouncy) {
                         showAllCharacteristics.toggle()
                     }
                 }
