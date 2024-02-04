@@ -10,24 +10,32 @@ import SwiftUI
 struct NoReviewsView: View {
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("У товара пока нет оценок и отзывов")
-                    .font(.headline)
-                
-                Text("Станьте первым! Вы можете оценить товар, нажав на кнопку ниже")
-                    .font(.subheadline)
-            }
-            .padding()
-
-            
-            Images.noReview
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100)
+            textContent
+            imageView
         }
         .frame(maxWidth: .infinity)
         .background(Color.gray.opacity(0.1))
         .cornerRadius(8)
         .padding()
+    }
+}
+
+private extension NoReviewsView {
+    var textContent: some View {
+        VStack(alignment: .leading, spacing: Component.doubleModule) {
+            Text(Labels.ProductDetails.noReviews)
+                .font(.headline)
+            
+            Text(Labels.ProductDetails.beFirst)
+                .font(.subheadline)
+        }
+        .padding()
+    }
+    
+    var imageView: some View {
+        Images.noReview
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100)
     }
 }

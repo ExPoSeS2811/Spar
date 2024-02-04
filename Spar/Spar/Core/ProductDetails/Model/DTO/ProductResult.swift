@@ -11,6 +11,7 @@ struct ProductResult: Decodable {
     let name: String
     let rating: Double
     let discount: String?
+    let hint: TagTypeResult?
     let origin: LocationResult
     let description: String
     let characteristics: [String: String]
@@ -24,6 +25,7 @@ struct ProductResult: Decodable {
         case name
         case rating
         case discount
+        case hint
         case origin
         case description
         case characteristics
@@ -49,5 +51,28 @@ struct ProductResult: Decodable {
         let date: Double
         let text: String
         let rating: Int
+    }
+    
+    enum TagTypeResult: Decodable {
+        case new
+        case priceHit
+        case superPrice
+        case cardPrice
+        case cheaperOnline
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let tagTypeString = try container.decode(String.self)
+            
+            switch tagTypeString.lowercased() {
+            case "new": self = .new
+            case "price_hit": self = .priceHit
+            case "super_price": self = .superPrice
+            case "card_price": self = .cardPrice
+            case "cheaper_online": self = .cheaperOnline
+            default:
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unknown tag type")
+            }
+        }
     }
 }

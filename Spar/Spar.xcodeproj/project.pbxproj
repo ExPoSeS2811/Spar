@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0136E02B700118007D4500 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0136DF2B700118007D4500 /* Labels.swift */; };
 		CAA7DEAC2B6FBB7600A362B8 /* SparApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7DEAB2B6FBB7600A362B8 /* SparApp.swift */; };
 		CAA7DEB02B6FBB7800A362B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DEAF2B6FBB7800A362B8 /* Assets.xcassets */; };
 		CAA7DEB32B6FBB7800A362B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DEB22B6FBB7800A362B8 /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0136DF2B700118007D4500 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		CAA7DEA82B6FBB7600A362B8 /* Spar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA7DEAB2B6FBB7600A362B8 /* SparApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparApp.swift; sourceTree = "<group>"; };
 		CAA7DEAF2B6FBB7800A362B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,9 +135,9 @@
 			children = (
 				CAA7DECD2B6FBD0400A362B8 /* Cart */,
 				CAA7DECC2B6FBCFA00A362B8 /* Catalog */,
+				CAA7DEC82B6FBCF000A362B8 /* Profile */,
 				CAA7DECB2B6FBCF600A362B8 /* Components */,
 				CAA7DECA2B6FBCF400A362B8 /* ProductDetails */,
-				CAA7DEC82B6FBCF000A362B8 /* Profile */,
 				CAA7DEC72B6FBCEE00A362B8 /* TabBar */,
 				CAA7DEC92B6FBCF200A362B8 /* ProductJson */,
 			);
@@ -156,6 +158,7 @@
 				CAA7DEC22B6FBCB000A362B8 /* Extension */,
 				CAA7DEC02B6FBCAC00A362B8 /* DesignColor.swift */,
 				CAA7DEC52B6FBCC000A362B8 /* Images.swift */,
+				CA0136DF2B700118007D4500 /* Labels.swift */,
 				CAA7DEBE2B6FBCA300A362B8 /* Component.swift */,
 			);
 			path = DesignSystem;
@@ -440,6 +443,7 @@
 				CAA7DED82B6FBD7200A362B8 /* Buildable.swift in Sources */,
 				CAA7DEAC2B6FBB7600A362B8 /* SparApp.swift in Sources */,
 				CAA7DEE72B6FBDCB00A362B8 /* Product.swift in Sources */,
+				CA0136E02B700118007D4500 /* Labels.swift in Sources */,
 				CAA7DEF22B6FBDF800A362B8 /* PreviewProductSectionView.swift in Sources */,
 				CAA7DEF92B6FBE0E00A362B8 /* ReviewCell.swift in Sources */,
 				CAA7DF0F2B6FBF0F00A362B8 /* MeasurmentPicker.swift in Sources */,

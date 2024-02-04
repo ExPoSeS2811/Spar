@@ -9,6 +9,6 @@ import SwiftUI
 
 struct CatalogView: View {
     var body: some View {
-        Text("Catalog View")
+        Text(Labels.TabBarScreen.catalog)
     }
 }

@@ -2,6 +2,7 @@
   "name": "Куры Гриль",
   "rating": 4.2,
   "discount": "-11%",
+  "hint": "price_hit",
   "origin": {
     "name": "Россия",
     "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/1200px-Flag_of_Russia.svg.png"

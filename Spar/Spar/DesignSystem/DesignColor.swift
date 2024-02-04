@@ -12,4 +12,6 @@ final class DesignColor {
     static var gold = Color(hex: 0xFAD656)
     static var crimson = Color(hex: 0xFF3348)
     static var gray200 = Color(hex: 0xF1F1F1)
+    static var violet = Color(hex: 0x7979BB)
+    static var ruby = Color(hex: 0xFC6A6F)
 }

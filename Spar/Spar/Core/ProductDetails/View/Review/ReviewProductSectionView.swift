@@ -22,9 +22,9 @@ struct ReviewProductSectionView: View {
 extension ReviewProductSectionView {
     private var reviewHeader: some View {
         HStack {
-            Text("Отзывы")
+            Text(Labels.ProductDetails.reviews)
             Spacer()
-            Text("Все \(reviews?.count ?? 0)")
+            Text("\(Labels.ProductDetails.all) \(reviews?.count ?? 0)")
                 .foregroundColor(DesignColor.toxic)
         }
         .font(.system(size: 20, weight: .bold))
@@ -37,7 +37,7 @@ extension ReviewProductSectionView {
         if let reviews = reviews, reviews.count != 0 {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(reviews) { review in
+                    ForEach(reviews.prefix(5)) { review in
                         ReviewCell(review: review)
                     }
                 }
@@ -50,8 +50,8 @@ extension ReviewProductSectionView {
     }
     
     private var reviewButton: some View {
-        Button("Оставить отзыв") {
-            print("review")
+        Button(Labels.ProductDetails.sendReview) {
+            // action from view model
         }
         .foregroundColor(DesignColor.toxic)
         .font(.system(size: 18, weight: .bold))

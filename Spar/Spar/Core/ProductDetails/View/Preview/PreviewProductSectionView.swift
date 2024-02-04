@@ -8,28 +8,12 @@
 import SwiftUI
 
 struct PreviewProductSectionView: View {
-    @StateObject var imageLoader: ImageLoader = ImageLoader()
+    @StateObject private var imageLoader = ImageLoader()
     let product: Product
     
     var body: some View {
         VStack {
-            if let image = imageLoader.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300)
-                    .overlay(
-                        cardPriceTag,
-                        alignment: .topLeading
-                    )
-                    .overlay(
-                        reviewSection,
-                        alignment: .bottom
-                    )
-            } else {
-                ProgressView()
-            }
+            contentBasedOnImageLoading
         }
         .onAppear {
             imageLoader.load(from: product.imageUrl)
@@ -37,18 +21,37 @@ struct PreviewProductSectionView: View {
     }
 }
 
-extension PreviewProductSectionView {
-    private var cardPriceTag: some View {
-        Text("Цена по карте") // I would do this using enum if I knew what the cases could be or we just use backend :)
-            .font(.subheadline)
-            .foregroundColor(Color.white)
-            .padding(Component.module)
-            .background(DesignColor.toxic)
-            .clipShape(RoundedRectangle(cornerRadius: Component.halfModule))
-            .padding(.leading)
+private extension PreviewProductSectionView {
+    @ViewBuilder
+    var contentBasedOnImageLoading: some View {
+        if let image = imageLoader.image {
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .frame(height: 300)
+                .overlay(cardPriceTag, alignment: .topLeading)
+                .overlay(reviewSection, alignment: .bottom)
+        } else {
+            ProgressView()
+        }
     }
     
-    private var reviewSection: some View {
+    @ViewBuilder
+    var cardPriceTag: some View {
+        if let hint = product.hint {
+            Text(hint.title)
+                .font(.system(size: 14))
+                .foregroundColor(.white)
+                .padding(.vertical, Component.halfModule)
+                .padding(.horizontal, Component.module)
+                .background(hint.color)
+                .clipShape(RoundedRectangle(cornerRadius: Component.halfModule))
+                .padding(.leading)
+        }
+    }
+    
+    var reviewSection: some View {
         HStack {
             Images.star
                 .renderingMode(.template)
@@ -56,7 +59,7 @@ extension PreviewProductSectionView {
             Text("\(product.rating, specifier: "%.1f")")
                 .foregroundColor(.primary)
             +
-            Text(" | \(product.reviews?.count ?? 0) отзывов")
+            Text(" | \(product.reviews?.count ?? 0) \(Labels.ProductDetails.countOfReviews)")
                 .foregroundColor(.gray)
             Spacer()
             if let discount = product.discount {

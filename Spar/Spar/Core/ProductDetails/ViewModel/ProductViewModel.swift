@@ -13,6 +13,7 @@ class ProductViewModel: ObservableObject {
     @Published var product: Product?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var isFavorite = false
     
     private let converter: ProductDTOToDomainConverter
     
@@ -45,5 +46,9 @@ class ProductViewModel: ObservableObject {
                 self?.product = product
             }
             .store(in: &self.cancellables)
+    }
+    
+    func toggleFavorite() {
+        isFavorite.toggle()
     }
 }

@@ -11,10 +11,7 @@ struct ProductDetailsView: View {
     @ObservedObject var viewModel: ProductViewModel
     private let jsonName: String
     
-    init(
-        viewModel: ProductViewModel,
-        jsonName: String = "2" // change the number for checking
-    ) {
+    init(viewModel: ProductViewModel, jsonName: String = "1") { // change the value, for check another examples
         self.viewModel = viewModel
         self.jsonName = jsonName
     }
@@ -22,29 +19,8 @@ struct ProductDetailsView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                if viewModel.isLoading {
-                    ProgressView()
-                } else if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                } else if let product = viewModel.product {
-                    ScrollView {
-                        Divider()
-                        VStack(alignment: .leading, spacing: Component.quadrupleModule) {
-                            PreviewProductSectionView(product: product)
-                            CharacteristicsProductSectionView(product: product)
-                            ReviewProductSectionView(reviews: product.reviews)
-                            Spacer()
-                        }
-                    }
-                    .padding(.bottom, 100)
-                    .navigationBarItems(
-                        leading: leftMenu,
-                        trailing: rightMenu
-                    )
-                    
-                    priceView
-                }
+                contentView
+                priceView
             }
         }
         .onAppear {
@@ -53,25 +29,56 @@ struct ProductDetailsView: View {
     }
 }
 
-extension ProductDetailsView {
-    private var leftMenu: some View {
+private extension ProductDetailsView {
+    @ViewBuilder
+    var contentView: some View {
+        if viewModel.isLoading {
+            ProgressView()
+        } else if let errorMessage = viewModel.errorMessage {
+            Text(errorMessage)
+                .foregroundColor(.red)
+        } else if viewModel.product != nil {
+            productContentView
+        }
+    }
+    
+    @ViewBuilder
+    var productContentView: some View {
+        ScrollView {
+            if let product = viewModel.product {
+                Divider()
+                VStack(alignment: .leading, spacing: Component.quadrupleModule) {
+                    PreviewProductSectionView(product: product)
+                    CharacteristicsProductSectionView(product: product)
+                    ReviewProductSectionView(reviews: product.reviews)
+                    Spacer()
+                }
+                .padding(.bottom, 100)
+                .navigationBarItems(leading: leftMenu, trailing: rightMenu)
+            }
+        }
+    }
+    
+    var leftMenu: some View {
         Images.System.backArrow
             .font(.headline)
             .foregroundColor(DesignColor.toxic)
     }
     
-    private var rightMenu: some View {
+    var rightMenu: some View {
         HStack(alignment: .firstTextBaseline, spacing: Component.doubleModule) {
             Images.System.bill
             Images.System.share
-            Images.System.favorite
+            Button(action: viewModel.toggleFavorite) {
+                viewModel.isFavorite ? Images.System.favoriteFill : Images.System.favoriteOutline
+            }
         }
         .font(.headline)
         .foregroundColor(DesignColor.toxic)
     }
     
     @ViewBuilder
-    private var priceView: some View {
+    var priceView: some View {
         if let product = viewModel.product {
             PriceProductSectionView(product: product)
                 .frame(height: 128)
@@ -83,8 +90,7 @@ extension ProductDetailsView {
                         Spacer()
                     }
                 )
-        } else {
-            EmptyView()
+                .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
