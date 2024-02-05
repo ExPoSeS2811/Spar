@@ -11,7 +11,7 @@ struct ProductDetailsView: View {
     @ObservedObject var viewModel: ProductViewModel
     private let jsonName: String
     
-    init(viewModel: ProductViewModel, jsonName: String = "1") { // change the value, for check another examples
+    init(viewModel: ProductViewModel, jsonName: String = "2") { // change the value, for check another examples
         self.viewModel = viewModel
         self.jsonName = jsonName
     }
